@@ -17,7 +17,7 @@ final class WTMapViewController: UIViewController {
 
     private let annotationViewReuseIdentifier = "statusPin"
 
-    private var streamingManager: WTStreamingController?
+    private var streamingManager: WTStreamingManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ final class WTMapViewController: UIViewController {
         // carriage return "\r\n" separates the statuses in the stream
         let parser = WTStatusParser(separator: "\r\n".data(using: .utf8)!)
 
-        streamingManager = WTStreamingController(parser: parser )
+        streamingManager = WTStreamingManager(parser: parser )
         streamingManager?.responseDelegate = self
 
         // Ensure that we are notified when the user returns to the app after being sent to Settings to fix their account setup
