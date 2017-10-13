@@ -113,6 +113,28 @@ extension WTMapViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         beginStreamingStatuses(with: searchBar.text)
+        filter(annotations: worldTweetsMapView.annotations, on: worldTweetsMapView, with: searchBar.text)
+    }
+    
+    /**
+     Hides annotations whose titles don't contain the search query
+     Shows annotations whose titles contain the search query
+     
+     - parameter annotations: The annotations to filter
+     - parameter mapView: The mapView on which to filter the annotations
+     - parameter query: The query to match on
+     */
+    func filter(annotations: [MKAnnotation], on mapView: MKMapView, with query: String?) {
+        for annotation in annotations {
+            let annotationTitle = (annotation.title ?? "") ?? ""
+            if let query = query, !query.isEmpty {
+                
+                mapView.view(for: annotation)?.isHidden = !annotationTitle.contains(query)
+            }
+            else {
+                mapView.view(for: annotation)?.isHidden = false
+            }
+        }
     }
 }
 
@@ -158,5 +180,15 @@ extension WTMapViewController {
         UIView.animate(withDuration: keyboardAnimationDuration, animations: {
             self.view.layoutIfNeeded()
         })
+    }
+    
+    /**
+     Hides the keyboard when the user touches anywhere outside the keyboard.
+     Replace if the UI is changed to include more text fields/views in the future
+     */
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if searchBar.isFirstResponder {
+            searchBar.resignFirstResponder()
+        }
     }
 }
