@@ -23,7 +23,7 @@ enum WTTwitterStreamService: WTSocialService {
     case samples
     case filter(track: String) // filter service requires non-optional track, since we're not using any other query parameters
 
-    private var baseURL: String { return "https://stream.twitter.com/1.1/" }
+    private let baseURL: String { return "https://stream.twitter.com/1.1/" }
 
     var serviceType: String { return SLServiceTypeTwitter }
     var accountTypeIdentifier: String { return ACAccountTypeIdentifierTwitter }

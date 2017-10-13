@@ -15,7 +15,7 @@ class WorldTweetsParserTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        parser = WTStatusParser()
+        parser = WTStatusParser(separator: "\r\n".data(using: .utf8)!)
     }
 
     override func tearDown() {
@@ -35,7 +35,7 @@ class WorldTweetsParserTests: XCTestCase {
         let statusArray: [String] = [nonGeoEnabledStatus, nonGeoEnabledStatus, geoEnabledStatus, geoEnabledStatus, nonGeoEnabledStatus, geoEnabledStatus, expectedJsonRemainder]
         let data = statusArray.joined(separator: "\r\n").data(using: .utf8)!
 
-        parser.parseStreamData(streamData: data) { (statuses: [WTStatus]) in
+        parser.parseData(data: data) { (statuses: [WTStatus]) in
             XCTAssert(statuses.count == 3)
             XCTAssert(statuses[2].coordinates.latitude == -31.75527778)
             XCTAssert(statuses[2].coordinates.longitude == 60.5125)
@@ -52,9 +52,9 @@ class WorldTweetsParserTests: XCTestCase {
         let statusArray: [String] = [nonGeoEnabledStatus, nonGeoEnabledStatus, nonGeoEnabledStatus]
         let data = statusArray.joined(separator: "\r\n").data(using: .utf8)!
 
-        parser.parseStreamData(streamData: data) { (statuses: [WTStatus]) in
+        parser.parseData(data: data) { (statuses: [WTStatus]) in
             XCTAssert(statuses.count == 0)
-            XCTAssert(parser.jsonRemainder == "")
+            XCTAssert(parser.remainder == Data())
         }
     }
 
@@ -70,7 +70,7 @@ class WorldTweetsParserTests: XCTestCase {
         self.measureMetrics([XCTPerformanceMetric.wallClockTime], automaticallyStartMeasuring: false) {
             self.startMeasuring()
 
-            parser.parseStreamData(streamData: data, completionHandler: { (_: [WTStatus]) in
+            parser.parseData(data: data, completionHandler: { (_: [WTStatus]) in
                 self.stopMeasuring()
             })
         }
