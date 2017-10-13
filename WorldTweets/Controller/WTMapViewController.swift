@@ -49,8 +49,7 @@ final class WTMapViewController: UIViewController {
          - parameter queryText: The text to filter the stream by
      */
     private func beginStreamingStatuses(with queryText: String? = nil) {
-        let streamingService: WTTwitterStreamService = queryText?.isEmpty ?? true ? .samples : .filter(track: queryText!)
-        streamingManager?.beginStreaming(from: streamingService, errorHandler: handleStreamConnectionError)
+        streamingManager?.beginStreaming(from: WTTwitterStreamService.filter(track: queryText), errorHandler: handleStreamConnectionError)
     }
 
     /**

@@ -21,7 +21,7 @@ protocol WTSocialService {
 /// Implements the samples and filter endpoints on the Twitter Streaming API
 enum WTTwitterStreamService: WTSocialService {
     case samples
-    case filter(track: String) // filter service requires non-optional track, since we're not using any other query parameters
+    case filter(track: String?)
 
     private var baseURL: String { return "https://stream.twitter.com/1.1/" }
 
@@ -49,7 +49,13 @@ enum WTTwitterStreamService: WTSocialService {
         case .samples:
             return [:]
         case let .filter(track):
-            return ["track": track]
+            if let track = track, !track.isEmpty {
+                return ["track": track]
+            }
+            else {
+                // The "@" track  on the filter stream has a massively larger proportion of statuses with locations than the samples stream
+                return ["track": "@"]
+            }
         }
     }
 }
