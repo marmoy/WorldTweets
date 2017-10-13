@@ -1,0 +1,4 @@
+# Example: https://github.com/realm/SwiftLint/blob/master/.swiftlint.yml
+
+disabled_rules:
+  - line_length

@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  WorldTweets
+
+  Created by David Marmoy on 12/10/2017.
+  Copyright © 2017 Marmoy. All rights reserved.
+*/
+
+"NoTwitterAccountAccessErrorTitle"      = "The app needs access your Twitter account to work";
+"NoTwitterAccountExistsErrorTitle"      = "Please add your Twitter account to this device";
+"UnableToConnectToTwitterErrorTitle"    = "An unforeseen error occurred while connecting to Twitter";
+"LetsFixIt"                             = "Let's fix it";
