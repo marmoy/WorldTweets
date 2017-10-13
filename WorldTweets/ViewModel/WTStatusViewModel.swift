@@ -11,9 +11,9 @@ import MapKit
 import CoreLocation
 
 struct WTStatusViewModel {
-    
+
     var annotation: MKPointAnnotation
-    
+
     init?(status: WTStatus) {
         guard let latitude = status.coordinates.latitude, let longitude = status.coordinates.longitude else { return nil }
         let annotation = MKPointAnnotation()

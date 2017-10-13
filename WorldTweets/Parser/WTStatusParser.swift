@@ -20,7 +20,7 @@ protocol WTStreamingParser: WTParser {
 }
 
 class WTStatusParser: WTStreamingParser {
-    
+
     /// The bytes that delimit streaming elements
     var separator: Data
 

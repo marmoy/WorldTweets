@@ -51,8 +51,7 @@ enum WTTwitterStreamService: WTSocialService {
         case let .filter(track):
             if let track = track, !track.isEmpty {
                 return ["track": track]
-            }
-            else {
+            } else {
                 // The "@" track  on the filter stream has a massively larger proportion of statuses with locations than the samples stream
                 return ["track": "@"]
             }
