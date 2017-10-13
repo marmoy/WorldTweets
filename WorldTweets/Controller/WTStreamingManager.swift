@@ -15,7 +15,7 @@ protocol WTStatusResponseDelegate: class {
 }
 
 /// Orchestrates the social account access, networking and parsing
-class WTStreamingController: NSObject {
+class WTStreamingManager: NSObject {
 
     weak var responseDelegate: WTStatusResponseDelegate?
 
@@ -40,7 +40,7 @@ class WTStreamingController: NSObject {
 }
 
 // MARK: Social and Accounts dependent
-extension WTStreamingController {
+extension WTStreamingManager {
     /**
          Prepares and starts the stream
      
@@ -86,7 +86,7 @@ extension WTStreamingController {
     }
 }
 
-extension WTStreamingController: URLSessionDataDelegate {
+extension WTStreamingManager: URLSessionDataDelegate {
 
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         self.parser.parseData(data: data) { (statuses: [WTStatus]) in

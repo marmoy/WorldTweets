@@ -16,7 +16,7 @@
 		8F896E1E1F909FB800471636 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F06D81B1F8CA99A00BF09E1 /* Accounts.framework */; };
 		8F896E1F1F909FB800471636 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F06D81C1F8CA99A00BF09E1 /* Social.framework */; };
 		8FB1F28C1F909ED900BCC351 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FB1F28B1F909ED900BCC351 /* Info.plist */; };
-		8FB62F391F8E94B500D1FF87 /* WTStreamingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB62F381F8E94B500D1FF87 /* WTStreamingController.swift */; };
+		8FB62F391F8E94B500D1FF87 /* WTStreamingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB62F381F8E94B500D1FF87 /* WTStreamingManager.swift */; };
 		8FB62F3D1F8E9F7C00D1FF87 /* WTStatusParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB62F3C1F8E9F7C00D1FF87 /* WTStatusParser.swift */; };
 		8FB62F3F1F8F32C300D1FF87 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8FB62F3E1F8F32C300D1FF87 /* Localizable.strings */; };
 		8FCA63151F8F817500583E11 /* StreamingStartupError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCA63141F8F817500583E11 /* StreamingStartupError.swift */; };
@@ -50,7 +50,7 @@
 		8F06D81B1F8CA99A00BF09E1 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = "WorldTweets/iOS10.3.1 frameworks/Accounts.framework"; sourceTree = "<group>"; };
 		8F06D81C1F8CA99A00BF09E1 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = "WorldTweets/iOS10.3.1 frameworks/Social.framework"; sourceTree = "<group>"; };
 		8FB1F28B1F909ED900BCC351 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8FB62F381F8E94B500D1FF87 /* WTStreamingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTStreamingController.swift; sourceTree = "<group>"; };
+		8FB62F381F8E94B500D1FF87 /* WTStreamingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTStreamingManager.swift; sourceTree = "<group>"; };
 		8FB62F3C1F8E9F7C00D1FF87 /* WTStatusParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTStatusParser.swift; sourceTree = "<group>"; };
 		8FB62F3E1F8F32C300D1FF87 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		8FCA63141F8F817500583E11 /* StreamingStartupError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingStartupError.swift; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				8F06D7FC1F8CA8DD00BF09E1 /* WTMapViewController.swift */,
-				8FB62F381F8E94B500D1FF87 /* WTStreamingController.swift */,
+				8FB62F381F8E94B500D1FF87 /* WTStreamingManager.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -303,7 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FF856B71F8D0EF30054D9C3 /* WTStatus.swift in Sources */,
-				8FB62F391F8E94B500D1FF87 /* WTStreamingController.swift in Sources */,
+				8FB62F391F8E94B500D1FF87 /* WTStreamingManager.swift in Sources */,
 				8FF856BF1F8D14180054D9C3 /* WTConfiguration.swift in Sources */,
 				8FCA631A1F90987800583E11 /* WTStatusViewModel.swift in Sources */,
 				8FCA63151F8F817500583E11 /* StreamingStartupError.swift in Sources */,
