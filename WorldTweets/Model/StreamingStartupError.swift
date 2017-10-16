@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import Accounts
 
 enum StreamingStartupError: Error {
     case accountAccessRejected
     case noAccountsExist
     case urlRequestCouldNotBeGenerated
     case unknownError
+    case accountError(ACErrorCode?)
 }
 
 extension StreamingStartupError: CustomStringConvertible {
