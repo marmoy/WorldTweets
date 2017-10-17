@@ -21,7 +21,7 @@ class WorldTweetsParserTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
     }
-
+            
     /**
      Tests the following:
      1. That the parser finds and parses all statuses with coordinates
