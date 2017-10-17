@@ -13,6 +13,9 @@
 		8F06D8021F8CA8DD00BF09E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F06D8011F8CA8DD00BF09E1 /* Assets.xcassets */; };
 		8F06D8051F8CA8DD00BF09E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F06D8031F8CA8DD00BF09E1 /* LaunchScreen.storyboard */; };
 		8F06D8101F8CA8DD00BF09E1 /* WorldTweetsParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F06D80F1F8CA8DD00BF09E1 /* WorldTweetsParserTests.swift */; };
+		8F0CFA7E1F9639A4006AEF06 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F06D81B1F8CA99A00BF09E1 /* Accounts.framework */; };
+		8F0CFA7F1F9639A4006AEF06 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F06D81C1F8CA99A00BF09E1 /* Social.framework */; };
+		8F0CFA811F96418D006AEF06 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0CFA801F96418D006AEF06 /* Result.swift */; };
 		8F1112F21F9527BF00FE84B8 /* WTTweetParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1112F11F9527BF00FE84B8 /* WTTweetParser.swift */; };
 		8F1112F61F95280200FE84B8 /* WTDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1112F51F95280200FE84B8 /* WTDataParser.swift */; };
 		8F1112F81F95281400FE84B8 /* WTParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1112F71F95281400FE84B8 /* WTParser.swift */; };
@@ -23,8 +26,6 @@
 		8F1113021F95291600FE84B8 /* WTTwitterStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1113011F95291600FE84B8 /* WTTwitterStream.swift */; };
 		8F1113041F95293A00FE84B8 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1113031F95293A00FE84B8 /* Data+Extensions.swift */; };
 		8F1113061F95295300FE84B8 /* WTSplittable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1113051F95295300FE84B8 /* WTSplittable.swift */; };
-		8F9A81CA1F96028A008A176F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F06D81B1F8CA99A00BF09E1 /* Accounts.framework */; };
-		8F9A81CB1F96028A008A176F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F06D81C1F8CA99A00BF09E1 /* Social.framework */; };
 		8FB1F28C1F909ED900BCC351 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FB1F28B1F909ED900BCC351 /* Info.plist */; };
 		8FB62F3F1F8F32C300D1FF87 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8FB62F3E1F8F32C300D1FF87 /* Localizable.strings */; };
 		8FCA63151F8F817500583E11 /* StreamingStartupError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCA63141F8F817500583E11 /* StreamingStartupError.swift */; };
@@ -53,6 +54,7 @@
 		8F06D8111F8CA8DD00BF09E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F06D81B1F8CA99A00BF09E1 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = "WorldTweets/iOS10.3.1 frameworks/Accounts.framework"; sourceTree = "<group>"; };
 		8F06D81C1F8CA99A00BF09E1 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = "WorldTweets/iOS10.3.1 frameworks/Social.framework"; sourceTree = "<group>"; };
+		8F0CFA801F96418D006AEF06 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		8F1112F11F9527BF00FE84B8 /* WTTweetParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTTweetParser.swift; sourceTree = "<group>"; };
 		8F1112F51F95280200FE84B8 /* WTDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTDataParser.swift; sourceTree = "<group>"; };
 		8F1112F71F95281400FE84B8 /* WTParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTParser.swift; sourceTree = "<group>"; };
@@ -74,8 +76,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F9A81CA1F96028A008A176F /* Accounts.framework in Frameworks */,
-				8F9A81CB1F96028A008A176F /* Social.framework in Frameworks */,
+				8F0CFA7E1F9639A4006AEF06 /* Accounts.framework in Frameworks */,
+				8F0CFA7F1F9639A4006AEF06 /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +121,7 @@
 				8FF856C31F8D5FBA0054D9C3 /* Configuration */,
 				8FCA631D1F909BD800583E11 /* Resources */,
 				8F1112F91F95284700FE84B8 /* WTSink.swift */,
+				8F0CFA801F96418D006AEF06 /* Result.swift */,
 			);
 			path = WorldTweets;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				8F06D7FD1F8CA8DD00BF09E1 /* WTMapViewController.swift in Sources */,
 				8F06D7FB1F8CA8DD00BF09E1 /* AppDelegate.swift in Sources */,
 				8F1113061F95295300FE84B8 /* WTSplittable.swift in Sources */,
+				8F0CFA811F96418D006AEF06 /* Result.swift in Sources */,
 				8F1112FE1F9528D400FE84B8 /* WTStreamSource.swift in Sources */,
 				8F1112FA1F95284700FE84B8 /* WTSink.swift in Sources */,
 				8F1112FC1F95286B00FE84B8 /* WTTweet.swift in Sources */,
@@ -535,6 +539,8 @@
 					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
 					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
 					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
+					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
+					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
 				);
 				INFOPLIST_FILE = WorldTweets/Configuration/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -553,6 +559,8 @@
 				DEVELOPMENT_TEAM = 25ZES2RX4M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
+					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
 					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
 					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
 					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",

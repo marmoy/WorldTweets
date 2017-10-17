@@ -12,7 +12,7 @@ class WTTweetSource: NSObject, WTStreamSource {
     typealias ResultType = WTTweet
 
     var parser = WTTweetParser()
-    var resultHandler: (([WTTweet]) -> Void)?
+    var resultHandler: ((Result<[ResultType]>) -> Void)?
 
     lazy var urlSession: URLSession = {
         return URLSession(configuration: .default, delegate: self, delegateQueue: nil)
@@ -28,16 +28,10 @@ class WTTweetSource: NSObject, WTStreamSource {
         }
     }
 
-    func openStream(with keyword: String? = nil, resultHandler: (([WTTweet]) -> Void)?, errorHandler: ((Error) -> Void)?) {
-        WTTwitterStream(keyword: keyword).buildRequest { (request, error) in
-
-            if let error = error {
-                errorHandler?(error)
-                return
-            }
-
-            guard let request = request else {
-                //errorHandler?(nil) // TODO: create error
+    func openStream(with keyword: String? = nil, resultHandler: ((Result<[ResultType]>) -> Void)?) {
+        WTTwitterStream(keyword: keyword).buildRequest { result in
+            guard let request = result.value else {
+                resultHandler?(Result.failure(result.error ?? StreamingStartupError.urlRequestCouldNotBeGenerated))
                 return
             }
 
@@ -47,6 +41,8 @@ class WTTweetSource: NSObject, WTStreamSource {
     }
 
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        parser.parse(input: data, completion: resultHandler)
+        parser.parse(input: data) { (result) in
+            self.resultHandler?(result)
+        }
     }
 }

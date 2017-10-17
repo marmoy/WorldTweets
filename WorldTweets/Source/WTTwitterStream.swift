@@ -11,12 +11,13 @@ import Social
 import Accounts
 
 protocol WTStream {
+    associatedtype ResultType
     var url: URL? { get }
     var parameters: [String: String] { get }
     var serviceType: String { get }
     var accountTypeIdentifier: String { get }
     var requestMethod: SLRequestMethod { get }
-    func buildRequest(completionHandler: @escaping (URLRequest?, StreamingStartupError?) -> Void)
+    func buildRequest(resultHandler: @escaping (Result<ResultType>) -> Void)
 }
 
 /// Implements the samples and filter endpoints on the Twitter Streaming API
@@ -46,24 +47,24 @@ struct WTTwitterStream: WTStream {
         }
     }
 
-    func buildRequest(completionHandler: @escaping (URLRequest?, StreamingStartupError?) -> Void) {
+    func buildRequest(resultHandler: @escaping (Result<URLRequest>) -> Void) {
 
         let accountStore: ACAccountStore = ACAccountStore()
         let accountType = accountStore.accountType(withAccountTypeIdentifier: accountTypeIdentifier)
 
         accountStore.requestAccessToAccounts(with: accountType, options: nil) { (granted, error) in
-            if error != nil {
-                completionHandler(nil, StreamingStartupError.accountError(error as? ACErrorCode))
+            if let error = error {
+                resultHandler(.failure(StreamingStartupError.unknownError(error)))
                 return
             }
 
             guard granted else {
-                completionHandler(nil, nil)
+                resultHandler(.failure(StreamingStartupError.accountAccessRejected))
                 return
             }
 
             guard let account = accountStore.accounts(with: accountType).first as? ACAccount else {
-                completionHandler(nil, nil)
+                resultHandler(.failure(StreamingStartupError.noAccountsExist))
                 return
             }
 
@@ -73,13 +74,13 @@ struct WTTwitterStream: WTStream {
                 url: self.url,
                 parameters: self.parameters
                 ) else {
-                    completionHandler(nil, nil)
+                    resultHandler(.failure(StreamingStartupError.urlRequestCouldNotBeGenerated))
                     return
             }
 
             streamRequest.account = account
 
-            completionHandler(streamRequest.preparedURLRequest(), nil)
+            resultHandler(.success(streamRequest.preparedURLRequest()))
         }
     }
 }

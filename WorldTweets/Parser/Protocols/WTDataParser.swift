@@ -15,13 +15,13 @@ protocol WTDataParser: WTParser where InputType == Data, ResultType: Decodable {
 }
 
 extension WTDataParser {
-    mutating func parse(input: InputType, completion: (([ResultType]) -> Void)?) {
+    mutating func parse(input: InputType, completion: ((Result<[ResultType]>) -> Void)?) {
         var tempData: Data = self.remainder
         tempData.append(input)
         let (elements, remainder) = tempData.split(with: separator )
         self.remainder = remainder
         let decodedElements = elements.flatMap { try? JSONDecoder().decode(ResultType.self, from: $0) }
-        completion?(decodedElements)
+        completion?(.success(decodedElements))
     }
 
     mutating func resetRemainder() {

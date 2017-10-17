@@ -9,6 +9,6 @@
 import Foundation
 
 protocol WTSink {
-    associatedtype Element: Decodable
-    func process(elements: [Element])
+    associatedtype ResultType
+    func process(result: Result<ResultType>)
 }

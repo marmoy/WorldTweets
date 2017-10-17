@@ -13,8 +13,7 @@ enum StreamingStartupError: Error {
     case accountAccessRejected
     case noAccountsExist
     case urlRequestCouldNotBeGenerated
-    case unknownError
-    case accountError(ACErrorCode?)
+    case unknownError(Error)
 }
 
 extension StreamingStartupError: CustomStringConvertible {
@@ -24,6 +23,8 @@ extension StreamingStartupError: CustomStringConvertible {
             return NSLocalizedString("NoTwitterAccountAccessErrorTitle", comment: "")
         case .noAccountsExist:
             return NSLocalizedString("NoTwitterAccountExistsErrorTitle", comment: "")
+        case let .unknownError(error):
+            return error.localizedDescription
         default:
             return ""
         }

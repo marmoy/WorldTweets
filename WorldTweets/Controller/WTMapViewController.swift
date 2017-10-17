@@ -50,9 +50,7 @@ class WTMapViewController: UIViewController {
      - parameter queryText: The text to filter the stream by
      */
     private func getTweets(with keyword: String? = nil) {
-        tweetSource.openStream(with: keyword, resultHandler: process) { (_) in
-
-        }
+        tweetSource.openStream(with: keyword, resultHandler: process)
     }
 
     /**
@@ -109,8 +107,13 @@ extension WTMapViewController: MKMapViewDelegate {
 }
 
 extension WTMapViewController: WTSink {
-    func process(elements: [WTTweet]) {
-        let annotations = elements.flatMap { $0.annotation }
+    func process(result: Result<[WTTweet]>) {
+        guard let tweets = result.value else {
+            handleError(error: result.error)
+            return
+        }
+
+        let annotations = tweets.flatMap { $0.annotation }
 
         DispatchQueue.main.async {
             self.worldTweetsMapView.addAnnotations(annotations)
@@ -119,6 +122,12 @@ extension WTMapViewController: WTSink {
         DispatchQueue.main.asyncAfter(deadline: (DispatchTime.now() + WTConfiguration.annotationLifeSpanInSeconds), execute: {
             self.worldTweetsMapView.removeAnnotations(annotations)
         })
+    }
+    
+    func handleError(error: Error?) {
+        // There are many ways to handle an error.
+        // Within the scope of this task the error will just be presented to the user regardless of cause, although that is not good UX.
+        // TODO: Handle error
     }
 }
 
