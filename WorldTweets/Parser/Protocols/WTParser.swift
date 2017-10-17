@@ -9,7 +9,7 @@
 import Foundation
 
 protocol WTParser {
-    associatedtype InputType
-    associatedtype ResultType
-    mutating func parse(input: InputType, completion: ((Result<[ResultType]>) -> Void)?)
+    associatedtype Input
+    associatedtype Output
+    mutating func parse(input: Input) -> [Output]
 }

@@ -9,6 +9,6 @@
 import Foundation
 
 protocol WTSink {
-    associatedtype ResultType
-    func process(result: Result<ResultType>)
+    associatedtype Value
+    func process(result: Result<Value>)
 }

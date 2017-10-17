@@ -8,23 +8,23 @@
 
 import Foundation
 
-protocol WTDataParser: WTParser where InputType == Data, ResultType: Decodable {
-    var remainder: InputType { get set }
-    var separator: InputType { get set }
+protocol WTDataParser: WTParser where Input == Data, Output: Decodable {
+    var remainder: Input { get set }
+    var separator: Input { get set }
     mutating func resetRemainder()
 }
 
 extension WTDataParser {
-    mutating func parse(input: InputType, completion: ((Result<[ResultType]>) -> Void)?) {
+    mutating func parse(input: Input) -> [Output] {
         var tempData: Data = self.remainder
         tempData.append(input)
         let (elements, remainder) = tempData.split(with: separator )
         self.remainder = remainder
-        let decodedElements = elements.flatMap { try? JSONDecoder().decode(ResultType.self, from: $0) }
-        completion?(.success(decodedElements))
+        let decodedElements = elements.flatMap { try? JSONDecoder().decode(Output.self, from: $0) }
+        return decodedElements
     }
 
     mutating func resetRemainder() {
-        remainder = InputType()
+        remainder = Input()
     }
 }

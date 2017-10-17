@@ -9,6 +9,6 @@
 import Foundation
 
 protocol WTStreamSource: URLSessionDataDelegate {
-    associatedtype ResultType
-    func openStream(with keyword: String?, resultHandler: ((Result<[ResultType]>) -> Void)?)
+    associatedtype Value
+    func openStream(with keyword: String?, resultHandler: ((Result<[Value]>) -> Void)?)
 }

@@ -28,7 +28,7 @@
 		8F1113061F95295300FE84B8 /* WTSplittable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1113051F95295300FE84B8 /* WTSplittable.swift */; };
 		8FB1F28C1F909ED900BCC351 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FB1F28B1F909ED900BCC351 /* Info.plist */; };
 		8FB62F3F1F8F32C300D1FF87 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8FB62F3E1F8F32C300D1FF87 /* Localizable.strings */; };
-		8FCA63151F8F817500583E11 /* StreamingStartupError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCA63141F8F817500583E11 /* StreamingStartupError.swift */; };
+		8FCA63151F8F817500583E11 /* StreamingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCA63141F8F817500583E11 /* StreamingError.swift */; };
 		8FF856BF1F8D14180054D9C3 /* WTConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF856BE1F8D14180054D9C3 /* WTConfiguration.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,7 +67,7 @@
 		8F1113051F95295300FE84B8 /* WTSplittable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTSplittable.swift; sourceTree = "<group>"; };
 		8FB1F28B1F909ED900BCC351 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8FB62F3E1F8F32C300D1FF87 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		8FCA63141F8F817500583E11 /* StreamingStartupError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingStartupError.swift; sourceTree = "<group>"; };
+		8FCA63141F8F817500583E11 /* StreamingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingError.swift; sourceTree = "<group>"; };
 		8FF856BE1F8D14180054D9C3 /* WTConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,7 +204,7 @@
 		8FF856C21F8D5F4A0054D9C3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8FCA63141F8F817500583E11 /* StreamingStartupError.swift */,
+				8FCA63141F8F817500583E11 /* StreamingError.swift */,
 				8F1112FB1F95286B00FE84B8 /* WTTweet.swift */,
 			);
 			path = Model;
@@ -346,7 +346,7 @@
 				8F1113041F95293A00FE84B8 /* Data+Extensions.swift in Sources */,
 				8F1112F81F95281400FE84B8 /* WTParser.swift in Sources */,
 				8F1112F61F95280200FE84B8 /* WTDataParser.swift in Sources */,
-				8FCA63151F8F817500583E11 /* StreamingStartupError.swift in Sources */,
+				8FCA63151F8F817500583E11 /* StreamingError.swift in Sources */,
 				8F1113021F95291600FE84B8 /* WTTwitterStream.swift in Sources */,
 				8F06D7FD1F8CA8DD00BF09E1 /* WTMapViewController.swift in Sources */,
 				8F06D7FB1F8CA8DD00BF09E1 /* AppDelegate.swift in Sources */,

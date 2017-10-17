@@ -123,11 +123,22 @@ extension WTMapViewController: WTSink {
             self.worldTweetsMapView.removeAnnotations(annotations)
         })
     }
-    
+
     func handleError(error: Error?) {
-        // There are many ways to handle an error.
-        // Within the scope of this task the error will just be presented to the user regardless of cause, although that is not good UX.
-        // TODO: Handle error
+        let errorPrompt = UIAlertController(title: error?.localizedDescription, message: nil, preferredStyle: .alert)
+
+        if let error = error as? RecoverableError, error.isRecoverable {
+            let recoverAction = UIAlertAction(title: error.recoverySuggestion, style: .default, handler: { (_) in
+                error.recover()
+            })
+            errorPrompt.addAction(recoverAction)
+        } else {
+            let acceptAction = UIAlertAction(title: "Ok", style: .default) { (_) in
+                self.getTweets(with: self.searchBar.text)
+            }
+            errorPrompt.addAction(acceptAction)
+        }
+        present(errorPrompt, animated: true)
     }
 }
 

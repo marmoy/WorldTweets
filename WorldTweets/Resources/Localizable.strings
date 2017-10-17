@@ -6,7 +6,8 @@
   Copyright © 2017 Marmoy. All rights reserved.
 */
 
-"NoTwitterAccountAccessErrorTitle"      = "The app needs access your Twitter account to work";
-"NoTwitterAccountExistsErrorTitle"      = "Please add your Twitter account to this device";
-"UnableToConnectToTwitterErrorTitle"    = "An unforeseen error occurred while connecting to Twitter";
-"LetsFixIt"                             = "Let's fix it";
+"accountAccessRejectedDescription"          = "The app needs access to your Twitter account to work";
+"noAccountsExistDescription"                = "Please add your Twitter account to this device";
+"urlRequestCouldNotBeGeneratedDescription"  = "The URL request could not be generated";
+"accountAccessRejectedSuggestion"           = "Go to Settings to approve access";
+"noAccountsExistSuggestion"                 = "Go to Settings to add your account";

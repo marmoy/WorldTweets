@@ -31,14 +31,15 @@ class WorldTweetsParserTests: XCTestCase {
     func testParseValidLocations() {
         let sliceIndex: String.Index = nonGeoEnabledStatus.index(of: ",")!
         let expectedJsonRemainder = String(nonGeoEnabledStatus[...sliceIndex])
+        let expectedRemainder = expectedJsonRemainder.data(using: .utf8)
         let statusArray: [String] = [nonGeoEnabledStatus, nonGeoEnabledStatus, geoEnabledStatus, geoEnabledStatus, nonGeoEnabledStatus, geoEnabledStatus, expectedJsonRemainder]
         let data = statusArray.joined(separator: "\r\n").data(using: .utf8)!
 
-        parser.parse(input: data, completion: { (tweets) in
-            XCTAssert(tweets.count == 3)
-            XCTAssert(tweets[2].coordinates.latitude == -31.75527778)
-            XCTAssert(tweets[2].coordinates.longitude == 60.5125)
-        })
+        let tweets = parser.parse(input: data)
+        XCTAssert(tweets.count == 3)
+        XCTAssert(tweets[2].coordinates.latitude == -31.75527778)
+        XCTAssert(tweets[2].coordinates.longitude == 60.5125)
+        XCTAssert(parser.remainder == expectedRemainder)
     }
 
     /**
@@ -50,9 +51,9 @@ class WorldTweetsParserTests: XCTestCase {
         let statusArray: [String] = [nonGeoEnabledStatus, nonGeoEnabledStatus, nonGeoEnabledStatus]
         let data = statusArray.joined(separator: "\r\n").data(using: .utf8)!
 
-        parser.parse(input: data, completion: { (tweets) in
-            XCTAssert(tweets.count == 0)
-        })
+        let tweets = parser.parse(input: data)
+        XCTAssert(tweets.count == 0)
+        XCTAssert(parser.remainder == nonGeoEnabledStatus.data(using: .utf8))
     }
 
     /*
@@ -63,13 +64,8 @@ class WorldTweetsParserTests: XCTestCase {
     func testNewParserPerformance() {
         let data = getDataForParserPerformanceTest(numberOfTweets: 1000)
 
-        // This is the way to measure asynchronous calls
-        self.measureMetrics([XCTPerformanceMetric.wallClockTime], automaticallyStartMeasuring: false) {
-            self.startMeasuring()
-
-            parser.parse(input: data, completion: { (_) in
-                self.stopMeasuring()
-            })
+        measure {
+            _ = parser.parse(input: data)
         }
     }
 }

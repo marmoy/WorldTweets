@@ -9,10 +9,10 @@
 import Foundation
 
 class WTTweetSource: NSObject, WTStreamSource {
-    typealias ResultType = WTTweet
+    typealias Value = WTTweet
 
     var parser = WTTweetParser()
-    var resultHandler: ((Result<[ResultType]>) -> Void)?
+    var resultHandler: ((Result<[Value]>) -> Void)?
 
     lazy var urlSession: URLSession = {
         return URLSession(configuration: .default, delegate: self, delegateQueue: nil)
@@ -28,10 +28,10 @@ class WTTweetSource: NSObject, WTStreamSource {
         }
     }
 
-    func openStream(with keyword: String? = nil, resultHandler: ((Result<[ResultType]>) -> Void)?) {
+    func openStream(with keyword: String? = nil, resultHandler: ((Result<[Value]>) -> Void)?) {
         WTTwitterStream(keyword: keyword).buildRequest { result in
             guard let request = result.value else {
-                resultHandler?(Result.failure(result.error ?? StreamingStartupError.urlRequestCouldNotBeGenerated))
+                resultHandler?(Result.failure(result.error ?? StreamingError.urlRequestCouldNotBeGenerated))
                 return
             }
 
@@ -41,8 +41,7 @@ class WTTweetSource: NSObject, WTStreamSource {
     }
 
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        parser.parse(input: data) { (result) in
-            self.resultHandler?(result)
-        }
+        let parsedData = parser.parse(input: data)
+        resultHandler?(.success(parsedData))
     }
 }

@@ -11,13 +11,12 @@ import Social
 import Accounts
 
 protocol WTStream {
-    associatedtype ResultType
     var url: URL? { get }
     var parameters: [String: String] { get }
     var serviceType: String { get }
     var accountTypeIdentifier: String { get }
     var requestMethod: SLRequestMethod { get }
-    func buildRequest(resultHandler: @escaping (Result<ResultType>) -> Void)
+    func buildRequest(resultHandler: @escaping (Result<URLRequest>) -> Void)
 }
 
 /// Implements the samples and filter endpoints on the Twitter Streaming API
@@ -54,17 +53,17 @@ struct WTTwitterStream: WTStream {
 
         accountStore.requestAccessToAccounts(with: accountType, options: nil) { (granted, error) in
             if let error = error {
-                resultHandler(.failure(StreamingStartupError.unknownError(error)))
+                resultHandler(.failure(StreamingError.propagatedError(error)))
                 return
             }
 
             guard granted else {
-                resultHandler(.failure(StreamingStartupError.accountAccessRejected))
+                resultHandler(.failure(StreamingError.accountAccessRejected))
                 return
             }
 
             guard let account = accountStore.accounts(with: accountType).first as? ACAccount else {
-                resultHandler(.failure(StreamingStartupError.noAccountsExist))
+                resultHandler(.failure(StreamingError.noAccountsExist))
                 return
             }
 
@@ -74,7 +73,7 @@ struct WTTwitterStream: WTStream {
                 url: self.url,
                 parameters: self.parameters
                 ) else {
-                    resultHandler(.failure(StreamingStartupError.urlRequestCouldNotBeGenerated))
+                    resultHandler(.failure(StreamingError.urlRequestCouldNotBeGenerated))
                     return
             }
 
