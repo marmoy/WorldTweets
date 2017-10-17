@@ -11,11 +11,11 @@ import XCTest
 
 class WorldTweetsParserTests: XCTestCase {
 
-    var parser: WTStatusParser!
+    var parser: WTTweetParser!
 
     override func setUp() {
         super.setUp()
-        parser = WTStatusParser(separator: "\r\n".data(using: .utf8)!)
+        parser = WTTweetParser()
     }
 
     override func tearDown() {
@@ -35,12 +35,11 @@ class WorldTweetsParserTests: XCTestCase {
         let statusArray: [String] = [nonGeoEnabledStatus, nonGeoEnabledStatus, geoEnabledStatus, geoEnabledStatus, nonGeoEnabledStatus, geoEnabledStatus, expectedJsonRemainder]
         let data = statusArray.joined(separator: "\r\n").data(using: .utf8)!
 
-        parser.parseData(data: data) { (statuses: [WTStatus]) in
-            XCTAssert(statuses.count == 3)
-            XCTAssert(statuses[2].coordinates.latitude == -31.75527778)
-            XCTAssert(statuses[2].coordinates.longitude == 60.5125)
-            XCTAssert(parser.remainder == expectedRemainder)
-        }
+        parser.parse(input: data, completion: { (tweets) in
+            XCTAssert(tweets.count == 3)
+            XCTAssert(tweets[2].coordinates.latitude == -31.75527778)
+            XCTAssert(tweets[2].coordinates.longitude == 60.5125)
+        })
     }
 
     /**
@@ -52,10 +51,9 @@ class WorldTweetsParserTests: XCTestCase {
         let statusArray: [String] = [nonGeoEnabledStatus, nonGeoEnabledStatus, nonGeoEnabledStatus]
         let data = statusArray.joined(separator: "\r\n").data(using: .utf8)!
 
-        parser.parseData(data: data) { (statuses: [WTStatus]) in
-            XCTAssert(statuses.count == 0)
-            XCTAssert(parser.remainder == Data())
-        }
+        parser.parse(input: data, completion: { (tweets) in
+            XCTAssert(tweets.count == 0)
+        })
     }
 
     /*
@@ -70,19 +68,7 @@ class WorldTweetsParserTests: XCTestCase {
         self.measureMetrics([XCTPerformanceMetric.wallClockTime], automaticallyStartMeasuring: false) {
             self.startMeasuring()
 
-            parser.parseData(data: data, completionHandler: { (_: [WTStatus]) in
-                self.stopMeasuring()
-            })
-        }
-    }
-
-    func testOldParserPerformance() {
-        let data = getDataForParserPerformanceTest(numberOfTweets: 1000)
-
-        self.measureMetrics([XCTPerformanceMetric.wallClockTime], automaticallyStartMeasuring: false) {
-            self.startMeasuring()
-
-            OriginalParser().parseStreamData(streamData: data, completionHandler: { (_: [WTStatus]) in
+            parser.parse(input: data, completion: { (tweets) in
                 self.stopMeasuring()
             })
         }

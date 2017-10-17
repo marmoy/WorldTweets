@@ -23,8 +23,8 @@
 		8F1113021F95291600FE84B8 /* WTTwitterStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1113011F95291600FE84B8 /* WTTwitterStream.swift */; };
 		8F1113041F95293A00FE84B8 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1113031F95293A00FE84B8 /* Data+Extensions.swift */; };
 		8F1113061F95295300FE84B8 /* WTSplittable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1113051F95295300FE84B8 /* WTSplittable.swift */; };
-		8F655AAD1F952BA6006D0DF2 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F06D81B1F8CA99A00BF09E1 /* Accounts.framework */; };
-		8F655AAE1F952BA6006D0DF2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F06D81C1F8CA99A00BF09E1 /* Social.framework */; };
+		8F9A81CA1F96028A008A176F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F06D81B1F8CA99A00BF09E1 /* Accounts.framework */; };
+		8F9A81CB1F96028A008A176F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F06D81C1F8CA99A00BF09E1 /* Social.framework */; };
 		8FB1F28C1F909ED900BCC351 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FB1F28B1F909ED900BCC351 /* Info.plist */; };
 		8FB62F3F1F8F32C300D1FF87 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8FB62F3E1F8F32C300D1FF87 /* Localizable.strings */; };
 		8FCA63151F8F817500583E11 /* StreamingStartupError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCA63141F8F817500583E11 /* StreamingStartupError.swift */; };
@@ -74,8 +74,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F655AAD1F952BA6006D0DF2 /* Accounts.framework in Frameworks */,
-				8F655AAE1F952BA6006D0DF2 /* Social.framework in Frameworks */,
+				8F9A81CA1F96028A008A176F /* Accounts.framework in Frameworks */,
+				8F9A81CB1F96028A008A176F /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +514,10 @@
 					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
 					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
 					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
+					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
+					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
+					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
+					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
 				);
 				INFOPLIST_FILE = WorldTweets/Configuration/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -532,6 +536,10 @@
 				DEVELOPMENT_TEAM = 25ZES2RX4M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
+					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
+					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
+					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
 					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
 					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",
 					"$(PROJECT_DIR)/WorldTweets/iOS10.3.1\\ frameworks",

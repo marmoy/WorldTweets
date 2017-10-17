@@ -9,5 +9,5 @@
 import Foundation
 
 struct WTConfiguration {
-    static let annotationLifeSpanInSeconds = 240.0
+    static let annotationLifeSpanInSeconds = 10.0
 }
