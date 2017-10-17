@@ -15,6 +15,11 @@ protocol WTDataParser: WTParser where Input == Data, Output: Decodable {
 }
 
 extension WTDataParser {
+    /**
+     Parses the input data into an array of objects. Uses the remainder across multiple invocations of parse, since the input is unlikely to be cut cleanly between elements
+     - parameter input: The data to parse
+     - returns: Array of parsed objects
+     */
     mutating func parse(input: Input) -> [Output] {
         var tempData: Data = self.remainder
         tempData.append(input)
@@ -24,6 +29,9 @@ extension WTDataParser {
         return decodedElements
     }
 
+    /**
+     Resets the remainder. Call before starting to parse new stream, to avoid getting the new stream data polluted with the remainder from the old stream data
+     */
     mutating func resetRemainder() {
         remainder = Input()
     }

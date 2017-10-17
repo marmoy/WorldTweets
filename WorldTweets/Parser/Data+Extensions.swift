@@ -9,6 +9,11 @@
 import Foundation
 
 extension Data: WTSplittable {
+    /**
+     Iterates through the data and splits it any time a separator match is found
+     - parameter separator: The data to look for when separating
+     - returns: tuple consisting of an array of separated data and the remainder. If self is a partial data chunk, then use the remainder as the basis for the next partial chunk. Otherwise append the remainder to the separated data.
+     */
     func split(with separator: Data) -> ([Data], Data) {
         guard var nextSeparatorRange = self.range(of: separator) else { return ([], self) }
 

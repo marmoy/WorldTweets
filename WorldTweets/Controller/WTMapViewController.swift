@@ -35,7 +35,7 @@ class WTMapViewController: UIViewController {
         worldTweetsMapView.mapType = .satellite
         worldTweetsMapView.visibleMapRect = MKMapRectWorld
 
-        // Ensure that we are notified when the user returns to the app after being sent to Settings to fix their account setup
+        // Ensure that we are notified when the user returns to the app after being sent to Settings to fix their account setup.
         NotificationCenter.default.addObserver(self, selector: #selector(appEnteringForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
 
@@ -107,6 +107,10 @@ extension WTMapViewController: MKMapViewDelegate {
 }
 
 extension WTMapViewController: WTSink {
+    /**
+     Processes the result coming from the stream.
+     - parameter result: The result coming from the stream. If success, result contains an array of tweets, otherwise it contains an error
+     */
     func process(result: Result<[WTTweet]>) {
         guard let tweets = result.value else {
             handleError(error: result.error)
@@ -124,6 +128,10 @@ extension WTMapViewController: WTSink {
         })
     }
 
+    /**
+     Determines what to do with an error and does it. Options are to present the error to the user with or without a recovery option. If there is an option for the user to recover, this method attempts to help them
+     - parameter error: The error to handle
+     */
     func handleError(error: Error?) {
         let errorPrompt = UIAlertController(title: error?.localizedDescription, message: nil, preferredStyle: .alert)
 

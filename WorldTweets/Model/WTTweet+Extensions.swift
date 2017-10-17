@@ -9,28 +9,17 @@
 import Foundation
 import MapKit
 
-protocol WTPinnable {
-    var annotation: MKAnnotation? { get }
-}
-
-protocol WTLocation: Decodable {
-    var coordinates: WTCoordinate { get set }
-}
-
-struct WTTweet: WTLocation, CustomStringConvertible {
+struct WTTweet: Decodable {
     private var text: String
-    var description: String { return text }
     var coordinates: WTCoordinate
 }
 
-struct WTCoordinate: Decodable {
-    private var coordinates: [Double]
-    var latitude: Double? { return coordinates.last }
-    var longitude: Double? { return coordinates.first }
+extension WTTweet: CustomStringConvertible {
+    var description: String { return text }
 }
 
-extension WTTweet: WTPinnable {
-    var annotation: MKAnnotation? {
+extension WTTweet: WTMapPinnable {
+    var annotation: MKPointAnnotation? {
         guard let latitude = coordinates.latitude, let longitude = coordinates.longitude else { return nil }
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)

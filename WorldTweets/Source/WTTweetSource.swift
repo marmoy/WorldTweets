@@ -48,7 +48,7 @@ class WTTweetSource: NSObject, WTStreamSource {
             self.entityStreamTask = self.urlSession.dataTask(with: request)
         }
     }
-    
+
     /// From URLSessionDataDelegate. Parses the stream and hands over the result to the resultHandler
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         let parsedData = parser.parse(input: data)
