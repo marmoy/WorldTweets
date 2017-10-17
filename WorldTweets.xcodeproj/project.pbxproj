@@ -121,6 +121,7 @@
 				8FF856C31F8D5FBA0054D9C3 /* Configuration */,
 				8FCA631D1F909BD800583E11 /* Resources */,
 				8F1112F91F95284700FE84B8 /* WTSink.swift */,
+				8FCA63141F8F817500583E11 /* StreamingError.swift */,
 				8F0CFA801F96418D006AEF06 /* Result.swift */,
 			);
 			path = WorldTweets;
@@ -204,7 +205,6 @@
 		8FF856C21F8D5F4A0054D9C3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8FCA63141F8F817500583E11 /* StreamingError.swift */,
 				8F1112FB1F95286B00FE84B8 /* WTTweet.swift */,
 			);
 			path = Model;

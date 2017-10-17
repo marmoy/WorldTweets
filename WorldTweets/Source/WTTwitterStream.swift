@@ -46,6 +46,7 @@ struct WTTwitterStream: WTStream {
         }
     }
 
+    /// Builds the URLRequest based on SLRequest and the specified account
     func buildRequest(resultHandler: @escaping (Result<URLRequest>) -> Void) {
 
         let accountStore: ACAccountStore = ACAccountStore()

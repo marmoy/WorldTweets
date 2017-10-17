@@ -8,6 +8,10 @@
 
 import Foundation
 
+/**
+ The source of the tweets.
+ Configures the network connection and the parser
+ */
 class WTTweetSource: NSObject, WTStreamSource {
     typealias Value = WTTweet
 
@@ -28,6 +32,11 @@ class WTTweetSource: NSObject, WTStreamSource {
         }
     }
 
+    /**
+     Opens the stream.
+     - parameter keyword: The keyword by which to filter the stream
+     - parameter resultHandler: The function to call when the stream delivers either stream data, or error data
+     */
     func openStream(with keyword: String? = nil, resultHandler: ((Result<[Value]>) -> Void)?) {
         WTTwitterStream(keyword: keyword).buildRequest { result in
             guard let request = result.value else {
@@ -39,7 +48,8 @@ class WTTweetSource: NSObject, WTStreamSource {
             self.entityStreamTask = self.urlSession.dataTask(with: request)
         }
     }
-
+    
+    /// From URLSessionDataDelegate. Parses the stream and hands over the result to the resultHandler
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         let parsedData = parser.parse(input: data)
         resultHandler?(.success(parsedData))
