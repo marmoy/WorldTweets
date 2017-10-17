@@ -17,7 +17,7 @@
 import UIKit
 import MapKit
 
-class WTMapViewController: UIViewController {
+final class WTMapViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var worldTweetsMapView: MKMapView!
@@ -78,7 +78,7 @@ extension WTMapViewController: UISearchBarDelegate {
      - parameter mapView: The mapView on which to filter the annotations
      - parameter query: The query to match on
      */
-    func filter(annotations: [MKAnnotation], on mapView: MKMapView, with query: String?) {
+    private func filter(annotations: [MKAnnotation], on mapView: MKMapView, with query: String?) {
         for annotation in annotations {
             let annotationTitle = (annotation.title ?? "") ?? ""
             if let query = query, !query.isEmpty {

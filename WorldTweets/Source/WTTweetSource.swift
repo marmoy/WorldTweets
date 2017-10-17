@@ -12,17 +12,17 @@ import Foundation
  The source of the tweets.
  Configures the network connection and the parser
  */
-class WTTweetSource: NSObject, WTStreamSource {
+final class WTTweetSource: NSObject, WTStreamSource {
     typealias Value = WTTweet
 
-    var parser = WTTweetParser()
-    var resultHandler: ((Result<[Value]>) -> Void)?
+    private var parser = WTTweetParser()
+    private var resultHandler: ((Result<[Value]>) -> Void)?
 
     lazy var urlSession: URLSession = {
         return URLSession(configuration: .default, delegate: self, delegateQueue: nil)
     }()
 
-    var entityStreamTask: URLSessionDataTask? {
+    private var entityStreamTask: URLSessionDataTask? {
         willSet {
             parser.resetRemainder()
             entityStreamTask?.cancel()
