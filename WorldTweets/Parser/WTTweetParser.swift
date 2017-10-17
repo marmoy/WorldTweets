@@ -11,7 +11,7 @@ import Foundation
 struct WTTweetParser: WTDataParser {
     typealias ResultType = WTTweet
     typealias InputType = Data
-    
+
     var remainder: Data = Data()
     var separator: Data = "\r\n".data(using: .utf8)!
 }

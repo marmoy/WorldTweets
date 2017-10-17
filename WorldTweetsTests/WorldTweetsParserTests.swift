@@ -21,7 +21,7 @@ class WorldTweetsParserTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
     }
-          
+
     /**
      Tests the following:
      1. That the parser finds and parses all statuses with coordinates
@@ -31,7 +31,6 @@ class WorldTweetsParserTests: XCTestCase {
     func testParseValidLocations() {
         let sliceIndex: String.Index = nonGeoEnabledStatus.index(of: ",")!
         let expectedJsonRemainder = String(nonGeoEnabledStatus[...sliceIndex])
-        let expectedRemainder = expectedJsonRemainder.data(using: String.Encoding.utf8)
         let statusArray: [String] = [nonGeoEnabledStatus, nonGeoEnabledStatus, geoEnabledStatus, geoEnabledStatus, nonGeoEnabledStatus, geoEnabledStatus, expectedJsonRemainder]
         let data = statusArray.joined(separator: "\r\n").data(using: .utf8)!
 
@@ -68,7 +67,7 @@ class WorldTweetsParserTests: XCTestCase {
         self.measureMetrics([XCTPerformanceMetric.wallClockTime], automaticallyStartMeasuring: false) {
             self.startMeasuring()
 
-            parser.parse(input: data, completion: { (tweets) in
+            parser.parse(input: data, completion: { (_) in
                 self.stopMeasuring()
             })
         }

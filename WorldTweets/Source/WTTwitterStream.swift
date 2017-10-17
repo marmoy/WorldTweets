@@ -21,22 +21,22 @@ protocol WTStream {
 
 /// Implements the samples and filter endpoints on the Twitter Streaming API
 struct WTTwitterStream: WTStream {
-    
+
     var keyword: String?
-    
+
     init(keyword: String? = nil) {
         self.keyword = keyword
     }
-    
+
     private var baseURL = "https://stream.twitter.com/1.1/"
-    
+
     var serviceType: String { return SLServiceTypeTwitter }
     var accountTypeIdentifier: String { return ACAccountTypeIdentifierTwitter }
-    
+
     var requestMethod: SLRequestMethod { return .GET }
-    
+
     var url: URL? { return URL(string: baseURL + "statuses/filter.json") }
-    
+
     var parameters: [String: String] {
         if let keyword = keyword, !keyword.isEmpty {
             return ["track": keyword]
@@ -45,28 +45,28 @@ struct WTTwitterStream: WTStream {
             return ["track": "@"]
         }
     }
-    
+
     func buildRequest(completionHandler: @escaping (URLRequest?, StreamingStartupError?) -> Void) {
-        
+
         let accountStore: ACAccountStore = ACAccountStore()
         let accountType = accountStore.accountType(withAccountTypeIdentifier: accountTypeIdentifier)
-        
+
         accountStore.requestAccessToAccounts(with: accountType, options: nil) { (granted, error) in
             if error != nil {
                 completionHandler(nil, StreamingStartupError.accountError(error as? ACErrorCode))
                 return
             }
-            
+
             guard granted else {
                 completionHandler(nil, nil)
                 return
             }
-            
+
             guard let account = accountStore.accounts(with: accountType).first as? ACAccount else {
                 completionHandler(nil, nil)
                 return
             }
-            
+
             guard let streamRequest = SLRequest(
                 forServiceType: self.serviceType,
                 requestMethod: self.requestMethod,
@@ -76,9 +76,9 @@ struct WTTwitterStream: WTStream {
                     completionHandler(nil, nil)
                     return
             }
-            
+
             streamRequest.account = account
-            
+
             completionHandler(streamRequest.preparedURLRequest(), nil)
         }
     }

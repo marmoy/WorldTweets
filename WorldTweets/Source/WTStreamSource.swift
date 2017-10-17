@@ -10,5 +10,5 @@ import Foundation
 
 protocol WTStreamSource: URLSessionDataDelegate {
     associatedtype ResultType
-    func openStream(with keyword: String?, resultHandler: (([WTTweet]) -> ())?, errorHandler: ((Error) -> ())?)
+    func openStream(with keyword: String?, resultHandler: (([WTTweet]) -> Void)?, errorHandler: ((Error) -> Void)?)
 }
